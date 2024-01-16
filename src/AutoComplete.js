@@ -114,8 +114,9 @@ const Autocomplete = ({ data, setData }) => {
             autoFocus
             className="border-none p-2 rounded-full mt-2 ml-2 focus:outline-none"
             placeholder="Type to search..."
+           
           />
-          {filteredData.length > 0 && (
+          {filteredData.length > 0 && listContainerRef.current && (
             <motion.ul
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
