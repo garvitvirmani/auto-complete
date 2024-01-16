@@ -63,6 +63,13 @@ const Autocomplete = ({ data, setData }) => {
     }
   }, [selectedIndex]);
 
+  
+  const filteredData = query.length === 0
+  ? data
+  : data.filter(
+      (item) => item.toLowerCase().startsWith(query.toLowerCase())
+    );
+
   return (
     <div className="relative">
       <div className="flex flex-wrap">
@@ -81,7 +88,7 @@ const Autocomplete = ({ data, setData }) => {
               fontFamily: "Arial, sans-serif",
               margin: "4px",
               padding: "8px",
-            }} // Adjusted margin and padding
+            }}
           >
             <span className="mr-2" style={{ fontFamily: "inherit" }}>
               {item}
@@ -104,10 +111,11 @@ const Autocomplete = ({ data, setData }) => {
             value={query}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            autoFocus
             className="border-none p-2 rounded-full mt-2 ml-2 focus:outline-none"
             placeholder="Type to search..."
           />
-          {query.length > 0 && (
+          {filteredData.length > 0 && (
             <motion.ul
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -121,7 +129,7 @@ const Autocomplete = ({ data, setData }) => {
                   : 0,
               }}
             >
-              {data.map((item, index) => (
+              {filteredData.map((item, index) => (
                 <motion.li
                   key={item}
                   id={`autocomplete-item-${index}`}
