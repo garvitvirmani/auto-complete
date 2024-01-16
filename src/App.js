@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import Autocomplete from './AutoComplete';
+import { useState } from 'react';
 
-function App() {
+
+const App = () => {
+
+  const [data,setData] = useState(['Apple', 'Banana', 'Orange', 'Grapes', 'Mango']);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Autocomplete </h1>
+      <h3 className="text-xl font-bold mb-4"> add item | use backspace to delete | use up-down keyboard arrow to navigate list | enter to select </h3>
+      <Autocomplete data={data} setData={setData} />
     </div>
   );
-}
+};
 
 export default App;
